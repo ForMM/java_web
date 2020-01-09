@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Course" >
+    <id column="n_course_id" property="nCourseId" jdbcType="BIGINT" />
+    <result column="c_course_name" property="cCourseName" jdbcType="VARCHAR" />
+    <result column="c_course_intro" property="cCourseIntro" jdbcType="VARCHAR" />
+    <result column="c_course_type" property="cCourseType" jdbcType="VARCHAR" />
+    <result column="t_begin_time" property="tBeginTime" jdbcType="TIMESTAMP" />
+    <result column="t_end_time" property="tEndTime" jdbcType="TIMESTAMP" />
+    <result column="n_teacher_id" property="nTeacherId" jdbcType="BIGINT" />
+    <result column="n_org_id" property="nOrgId" jdbcType="BIGINT" />
+    <result column="n_school_id" property="nSchoolId" jdbcType="BIGINT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+    <result column="t_update_time" property="tUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="n_count_user" property="nCountUser" jdbcType="INTEGER" />
+    <result column="n_recommend" property="nRecommend" jdbcType="INTEGER" />
+    <result column="c_course_img" property="cCourseImg" jdbcType="VARCHAR" />
+    <result column="c_ppt_path" property="cPptPath" jdbcType="VARCHAR" />
+    <result column="c_ppt_imgs" property="cPptImgs" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_course_id, c_course_name, c_course_intro, c_course_type, t_begin_time, t_end_time, 
+    n_teacher_id, n_org_id, n_school_id, t_create_time, t_update_time, n_count_user, 
+    n_recommend,c_course_img,c_ppt_path,c_ppt_imgs
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_course
+    where n_course_id = #{nCourseId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_course
+    where n_course_id = #{nCourseId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Course" >
+    insert into t_course (n_course_id, c_course_name, c_course_intro, 
+      c_course_type, t_begin_time, t_end_time, 
+      n_teacher_id, n_org_id, n_school_id, 
+      t_create_time, t_update_time, n_count_user, 
+      n_recommend,c_course_img,c_ppt_path,c_ppt_imgs)
+    values (#{nCourseId,jdbcType=BIGINT}, #{cCourseName,jdbcType=VARCHAR}, #{cCourseIntro,jdbcType=VARCHAR}, 
+      #{cCourseType,jdbcType=VARCHAR}, #{tBeginTime,jdbcType=TIMESTAMP}, #{tEndTime,jdbcType=TIMESTAMP}, 
+      #{nTeacherId,jdbcType=BIGINT}, #{nOrgId,jdbcType=BIGINT}, #{nSchoolId,jdbcType=BIGINT}, 
+      #{tCreateTime,jdbcType=TIMESTAMP}, #{tUpdateTime,jdbcType=TIMESTAMP}, #{nCountUser,jdbcType=INTEGER}, 
+      #{nRecommend,jdbcType=INTEGER},#{cCourseImg,jdbcType=VARCHAR},#{cPptPath,jdbcType=VARCHAR},#{cPptImgs,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Course" >
+    insert into t_course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nCourseId != null" >
+        n_course_id,
+      </if>
+      <if test="cCourseName != null" >
+        c_course_name,
+      </if>
+      <if test="cCourseIntro != null" >
+        c_course_intro,
+      </if>
+      <if test="cCourseType != null" >
+        c_course_type,
+      </if>
+      <if test="tBeginTime != null" >
+        t_begin_time,
+      </if>
+      <if test="tEndTime != null" >
+        t_end_time,
+      </if>
+      <if test="nTeacherId != null" >
+        n_teacher_id,
+      </if>
+      <if test="nOrgId != null" >
+        n_org_id,
+      </if>
+      <if test="nSchoolId != null" >
+        n_school_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time,
+      </if>
+      <if test="nCountUser != null" >
+        n_count_user,
+      </if>
+      <if test="nRecommend != null" >
+        n_recommend,
+      </if>
+      <if test="cCourseImg != null" >
+        c_course_img,
+      </if>
+      <if test="cPptPath != null" >
+        c_ppt_path,
+      </if>
+      <if test="cPptImgs != null" >
+        c_ppt_imgs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nCourseId != null" >
+        #{nCourseId,jdbcType=BIGINT},
+      </if>
+      <if test="cCourseName != null" >
+        #{cCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="cCourseIntro != null" >
+        #{cCourseIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="cCourseType != null" >
+        #{cCourseType,jdbcType=VARCHAR},
+      </if>
+      <if test="tBeginTime != null" >
+        #{tBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tEndTime != null" >
+        #{tEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nTeacherId != null" >
+        #{nTeacherId,jdbcType=BIGINT},
+      </if>
+      <if test="nOrgId != null" >
+        #{nOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="nSchoolId != null" >
+        #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nCountUser != null" >
+        #{nCountUser,jdbcType=INTEGER},
+      </if>
+      <if test="nRecommend != null" >
+        #{nRecommend,jdbcType=INTEGER},
+      </if>
+        <if test="cCourseImg != null" >
+       #{cCourseImg}
+      </if>
+       <if test="cPptPath != null" >
+       #{cPptPath}
+      </if>
+        <if test="cPptImgs != null" >
+       #{cPptImgs}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.Course" >
+    update t_course
+    <set >
+      <if test="cCourseName != null" >
+        c_course_name = #{cCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="cCourseIntro != null" >
+        c_course_intro = #{cCourseIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="cCourseType != null" >
+        c_course_type = #{cCourseType,jdbcType=VARCHAR},
+      </if>
+      <if test="tBeginTime != null" >
+        t_begin_time = #{tBeginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tEndTime != null" >
+        t_end_time = #{tEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nTeacherId != null" >
+        n_teacher_id = #{nTeacherId,jdbcType=BIGINT},
+      </if>
+      <if test="nOrgId != null" >
+        n_org_id = #{nOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="nSchoolId != null" >
+        n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nCountUser != null" >
+        n_count_user = #{nCountUser,jdbcType=INTEGER},
+      </if>
+      <if test="nRecommend != null" >
+        n_recommend = #{nRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="cCourseImg != null" >
+        c_course_img = #{cCourseImg,jdbcType=VARCHAR},
+      </if>
+       <if test="cPptPath != null" >
+        c_ppt_path = #{cPptPath,jdbcType=VARCHAR},
+      </if>
+       <if test="cPptImgs != null" >
+        c_ppt_imgs = #{cPptImgs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_course_id = #{nCourseId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.Course" >
+    update t_course
+    set c_course_name = #{cCourseName,jdbcType=VARCHAR},
+      c_course_intro = #{cCourseIntro,jdbcType=VARCHAR},
+      c_course_type = #{cCourseType,jdbcType=VARCHAR},
+      t_begin_time = #{tBeginTime,jdbcType=TIMESTAMP},
+      t_end_time = #{tEndTime,jdbcType=TIMESTAMP},
+      n_teacher_id = #{nTeacherId,jdbcType=BIGINT},
+      n_org_id = #{nOrgId,jdbcType=BIGINT},
+      n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      n_count_user = #{nCountUser,jdbcType=INTEGER},
+      n_recommend = #{nRecommend,jdbcType=INTEGER},
+      c_course_img = #{cCourseImg,jdbcType=VARCHAR},
+      c_ppt_path = #{cPptPath,jdbcType=VARCHAR},
+      c_ppt_imgs = #{cPptImgs,jdbcType=VARCHAR}
+    where n_course_id = #{nCourseId,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateSchoolIdByUserId">
+   update t_course set n_school_id=#{schoolId} where n_teacher_id=#{userId}
+  </update>
+  <select id="findRecommends" parameterType="java.util.Map" resultMap = "BaseResultMap">
+  select * from t_course ORDER
+  <where>
+   <if test="courseType!=null and courseType!=''">
+    and c_course_type=#{courseType}
+   </if>
+  </where>
+   BY n_recommend ASC,t_update_time DESC,n_count_user DESC
+    <if test="startRow!=null">
+    limit #{startRow},#{pageSize}
+    </if>
+  </select>
+  <select id="countRecommends" parameterType="java.util.Map" resultType = "java.lang.Integer">
+  select count(*) from t_course
+  <where>
+   <if test="courseType!=null and courseType!=''">
+    and c_course_type=#{courseType}
+   </if>
+  </where>
+  </select>
+  
+  <select id="findByParam" parameterType="java.util.Map" resultMap = "BaseResultMap">
+  select * from t_course 
+  <where>
+     <if test="statu==1">
+	  	<![CDATA[
+	      and DATE_FORMAT(t_begin_time, '%Y-%m-%d') >  DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+  	 </if>
+  	 <if test="statu==2">
+  		 <![CDATA[
+	      and DATE_FORMAT(t_begin_time, '%Y-%m-%d') <= DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+		 <![CDATA[
+	      and DATE_FORMAT(t_end_time, '%Y-%m-%d') >=  DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+  	 </if>
+  	 <if test="statu==3">
+   		 <![CDATA[
+	      and DATE_FORMAT(t_end_time, '%Y-%m-%d') <  DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+  	 </if>
+  	<if test="teacherId!=null">
+  		and n_teacher_id = #{teacherId}
+  	</if>
+  	<if test="orgId!=null">
+  		and n_org_id = #{orgId}
+  	</if>
+  	<if test="courseType!=null and courseType!=''">
+  		and c_course_type = #{courseType}
+  	</if>
+  	<if test="keyword!=null and keyword!=''">
+	 and (
+		 c_course_name like CONCAT('%','${keyword}','%' ) 
+		 or c_course_type like CONCAT('%','${keyword}','%' ) 
+	  	)
+  	</if>
+  </where>
+   	order by t_update_time DESC,n_count_user DESC
+   	<if test="startRow!=null">
+   	limit #{startRow},#{pageSize}
+   	</if>
+  </select>
+  
+  <select id="countByParam" parameterType="java.util.Map" resultType = "java.lang.Integer">
+  select count(*) from t_course 
+  <where>
+     <if test="statu==1">
+	  	<![CDATA[
+	      and DATE_FORMAT(t_begin_time, '%Y-%m-%d') >  DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+  	 </if>
+  	 <if test="statu==2">
+  		 <![CDATA[
+	      and DATE_FORMAT(t_begin_time, '%Y-%m-%d') <= DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+		 <![CDATA[
+	      and DATE_FORMAT(t_end_time, '%Y-%m-%d') >=  DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+  	 </if>
+  	 <if test="statu==3">
+   		 <![CDATA[
+	      and DATE_FORMAT(t_end_time, '%Y-%m-%d') <  DATE_FORMAT(#{now}, '%Y-%m-%d')
+		]]>
+  	 </if>
+  	<if test="teacherId!=null">
+  		and n_teacher_id = #{teacherId}
+  	</if>
+  	<if test="orgId!=null">
+  		and n_org_id = #{orgId}
+  	</if>
+  	<if test="courseType!=null and courseType!=''">
+  		and c_course_type = #{courseType}
+  	</if>
+  	<if test="keyword!=null and keyword!=''">
+	 and (
+		 c_course_name like CONCAT('%','${keyword}','%' ) 
+		 or c_course_type like CONCAT('%','${keyword}','%' ) 
+	  	)
+  	</if>
+  </where>
+  </select>
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+http://www.springframework.org/schema/mvc 
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- 自动扫描 -->
+ 	<context:component-scan base-package="com.xiaoyuan.**.service..*" />
+	<context:component-scan base-package="com.xiaoyuan.*.*.controller" />
+	<context:component-scan base-package="com.xiaoyuan.*.controller" />
+    
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
+<!-- 开启注解 -->  
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />  
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean>  
+	 <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 --> 
+ <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <property name="defaultEncoding" value="utf-8" />
+       <property name="maxUploadSize" value="10485760000" />
+       <property name="maxInMemorySize" value="40960" />
+ </bean>
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
+    <!-- 定义默认的异常处理页面，当该异常类型的注册时使用 -->  
+    <property name="defaultErrorView" value="error"></property>  
+    <!-- 定义异常处理页面用来获取异常信息的变量名，默认名为exception -->  
+    <property name="exceptionAttribute" value="ex"></property>  
+    <!-- 定义需要特殊处理的异常，用类名或完全路径名作为key，异常也页名作为值 -->  
+    <property name="exceptionMappings">  
+        <props>  
+            <prop key="SystemInfoException">error/error</prop>  
+        </props>  
+    </property>  
+</bean> 
+<mvc:resources location="/website/" mapping="/website/**"/> 
+</beans>

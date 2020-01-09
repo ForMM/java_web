@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.TipsMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Tips" >
+    <id column="n_tips_id" property="nTipsId" jdbcType="BIGINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_tips
+    where n_tips_id = #{nTipsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Tips" >
+    insert into t_tips (n_tips_id)
+    values (#{nTipsId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Tips" >
+    insert into t_tips
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nTipsId != null" >
+        n_tips_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nTipsId != null" >
+        #{nTipsId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

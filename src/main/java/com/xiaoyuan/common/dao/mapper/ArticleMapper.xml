@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.ArticleMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Article" >
+    <id column="n_article_id" property="nArticleId" jdbcType="BIGINT" />
+    <result column="c_article_title" property="cArticleTitle" jdbcType="VARCHAR" />
+    <result column="c_article_tag" property="cArticleTag" jdbcType="VARCHAR" />
+    <result column="c_article_imgs" property="cArticleImgs" jdbcType="VARCHAR" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+    <result column="t_update_time" property="tUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="n_create_id" property="nCreateId" jdbcType="BIGINT" />
+    <result column="n_school_id" property="nSchoolId" jdbcType="BIGINT" />
+    <result column="c_school_name" property="cSchoolName" jdbcType="VARCHAR" />
+     <result column="c_article_content" property="cArticleContent" jdbcType="LONGVARCHAR" />
+     <result column="n_count_comment" property="nCountComment" jdbcType="INTEGER" />
+     <result column="n_submit_status" property="nSubmitStatus" jdbcType="INTEGER" />
+     <result column="n_article_type" property="nArticleType" jdbcType="INTEGER" />
+      <result column="n_top" property="nTop" jdbcType="INTEGER" />
+      <result column="c_content_html" property="cContentHtml" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_article_id, c_article_title, c_article_tag, c_article_imgs, t_create_time, t_update_time, 
+    n_create_id, n_school_id, c_school_name,c_article_content,n_count_comment,n_submit_status,n_top,
+    n_article_type,c_content_html
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_article
+    where n_article_id = #{nArticleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_article
+    where n_article_id = #{nArticleId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Article" >
+    insert into t_article (n_article_id, c_article_title, c_article_tag, 
+      c_article_imgs, t_create_time, t_update_time, 
+      n_create_id, n_school_id, c_school_name, 
+      c_article_content,n_count_comment,n_submit_status,n_article_type,n_top,c_content_html)
+    values (#{nArticleId,jdbcType=BIGINT}, #{cArticleTitle,jdbcType=VARCHAR}, #{cArticleTag,jdbcType=VARCHAR}, 
+      #{cArticleImgs,jdbcType=VARCHAR}, #{tCreateTime,jdbcType=TIMESTAMP}, #{tUpdateTime,jdbcType=TIMESTAMP}, 
+      #{nCreateId,jdbcType=BIGINT}, #{nSchoolId,jdbcType=BIGINT}, #{cSchoolName,jdbcType=VARCHAR}, 
+      #{cArticleContent,jdbcType=LONGVARCHAR},#{nCountComment,jdbcType=INTEGER},#{nSubmitStatus,jdbcType=INTEGER},#{nArticleType,jdbcType=INTEGER},#{nTop,jdbcType=INTEGER},#{cContentHtml,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Article" >
+    insert into t_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nArticleId != null" >
+        n_article_id,
+      </if>
+      <if test="cArticleTitle != null" >
+        c_article_title,
+      </if>
+      <if test="cArticleTag != null" >
+        c_article_tag,
+      </if>
+      <if test="cArticleImgs != null" >
+        c_article_imgs,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time,
+      </if>
+      <if test="nCreateId != null" >
+        n_create_id,
+      </if>
+      <if test="nSchoolId != null" >
+        n_school_id,
+      </if>
+      <if test="cSchoolName != null" >
+        c_school_name,
+      </if>
+      <if test="cArticleContent != null" >
+        c_article_content,
+      </if>
+      <if test="nCountComment!=null">
+      n_count_comment,
+      </if>
+       <if test="nSubmitStatus!=null">
+      n_submit_status,
+      </if>
+      <if test="nArticleType!=null">
+      n_article_type,
+      </if>
+       <if test="nTop!=null">
+      n_top,
+      </if>
+      <if test="cContentHtml!=null">
+      c_content_html,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nArticleId != null" >
+        #{nArticleId,jdbcType=BIGINT},
+      </if>
+      <if test="cArticleTitle != null" >
+        #{cArticleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cArticleTag != null" >
+        #{cArticleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="cArticleImgs != null" >
+        #{cArticleImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nCreateId != null" >
+        #{nCreateId,jdbcType=BIGINT},
+      </if>
+      <if test="nSchoolId != null" >
+        #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="cSchoolName != null" >
+        #{cSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="cArticleContent != null" >
+        #{cArticleContent,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="nCountComment!=null">
+     	#{nCountComment,jdbcType=INTEGER},
+      </if>
+      <if test="nSubmitStatus!=null">
+     	#{nSubmitStatus,jdbcType=INTEGER},
+      </if>
+       <if test="nArticleType!=null">
+      #{nArticleType,jdbcType=INTEGER},
+      </if>
+       <if test="nTop!=null">
+    	#{nTop,jdbcType=INTEGER},
+      </if>
+      <if test="cContentHtml!=null">
+    	#{cContentHtml,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.Article" >
+    update t_article
+    <set >
+      <if test="cArticleTitle != null" >
+        c_article_title = #{cArticleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="cArticleTag != null" >
+        c_article_tag = #{cArticleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="cArticleImgs != null" >
+        c_article_imgs = #{cArticleImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nCreateId != null" >
+        n_create_id = #{nCreateId,jdbcType=BIGINT},
+      </if>
+      <if test="nSchoolId != null" >
+        n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="cSchoolName != null" >
+        c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="cArticleContent != null" >
+        c_article_content = #{cArticleContent,jdbcType=LONGVARCHAR},
+      </if>
+       <if test="nCountComment!=null">
+      n_count_comment=#{nCountComment,jdbcType=INTEGER},
+      </if>
+      <if test="nSubmitStatus!=null">
+     	n_submit_status =#{nSubmitStatus,jdbcType=INTEGER},
+      </if>
+        <if test="nArticleType!=null">
+      n_article_type = #{nArticleType,jdbcType=INTEGER},
+      </if>
+       <if test="nTop!=null">
+    	n_top = #{nTop,jdbcType=INTEGER},
+      </if>
+       <if test="cContentHtml!=null">
+    	c_content_html = #{cContentHtml,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where n_article_id = #{nArticleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xiaoyuan.common.entity.Article" >
+    update t_article
+    set c_article_title = #{cArticleTitle,jdbcType=VARCHAR},
+      c_article_tag = #{cArticleTag,jdbcType=VARCHAR},
+      c_article_imgs = #{cArticleImgs,jdbcType=VARCHAR},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      n_create_id = #{nCreateId,jdbcType=BIGINT},
+      n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      c_article_content = #{cArticleContent,jdbcType=LONGVARCHAR},
+      n_count_comment = #{nCountComment,jdbcType=INTEGER},
+      n_submit_status =#{nSubmitStatus,jdbcType=INTEGER},
+      n_article_type= #{nArticleType,jdbcType=INTEGER},
+      n_top =#{nTop,jdbcType=INTEGER},
+      c_content_html = #{cContentHtml,jdbcType=LONGVARCHAR}
+    where n_article_id = #{nArticleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.Article" >
+    update t_article
+    set c_article_title = #{cArticleTitle,jdbcType=VARCHAR},
+      c_article_tag = #{cArticleTag,jdbcType=VARCHAR},
+      c_article_imgs = #{cArticleImgs,jdbcType=VARCHAR},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      n_create_id = #{nCreateId,jdbcType=BIGINT},
+      n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      c_article_content = #{cArticleContent,jdbcType=LONGVARCHAR},
+      n_count_comment = #{nCountComment,jdbcType=INTEGER},
+      n_submit_status = #{nSubmitStatus,jdbcType=INTEGER},
+        n_article_type =  #{nArticleType,jdbcType=INTEGER},
+         n_top =#{nTop,jdbcType=INTEGER},
+          c_content_html = #{cContentHtml,jdbcType=LONGVARCHAR}
+    where n_article_id = #{nArticleId,jdbcType=BIGINT}
+  </update>
+  <select id="findByParam" resultMap="BaseResultMap">
+  select * from t_article
+  <where>
+   <if test="userId!=null">
+   and n_create_id=#{userId}
+   </if>
+    <if test="schoolId!=null">
+   and n_school_id=#{schoolId}
+   </if>
+    <if test="submitStatu!=null">
+   and n_submit_status=#{submitStatu}
+   </if>
+   <if test="draftStatu!=null">
+   and n_submit_status!=#{draftStatu}
+   </if>
+   <if test="articleType!=null">
+   and n_article_type=#{articleType}
+   </if>
+  </where>
+  order by t_create_time desc
+  <if test="startRow!=null">
+  limit #{startRow},#{pageSize}
+  </if>
+  </select>
+  <select id="countByParam" resultType="java.lang.Integer">
+  select count(*) from t_article
+  <where>
+   <if test="userId!=null">
+   and n_create_id=#{userId}
+   </if>
+    <if test="schoolId!=null">
+   and n_school_id=#{schoolId}
+   </if>
+   <if test="submitStatu!=null">
+   and n_submit_status=#{submitStatu}
+   </if>
+   <if test="draftStatu!=null">
+   and n_submit_status!=#{draftStatu}
+   </if>
+   <if test="articleType!=null">
+   and n_article_type=#{articleType}
+   </if>
+  </where>
+  </select>
+  <update id="updateSchoolIdByUserId">
+   update t_article set n_school_id=#{schoolId} where n_create_id=#{userId}
+  </update>
+  <update id="updateTopBySchoolId">
+   update t_article set n_top=0 where n_school_id=#{schoolId}
+  </update>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.AdviceMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Advice" >
+    <id column="n_advice_id" property="nAdviceId" jdbcType="BIGINT" />
+    <result column="c_advice_content" property="cAdviceContent" jdbcType="VARCHAR" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+    <result column="n_create_id" property="nCreateId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_advice_id, c_advice_content, t_create_time, n_create_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_advice
+    where n_advice_id = #{nAdviceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_advice
+    where n_advice_id = #{nAdviceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Advice" >
+    insert into t_advice (n_advice_id, c_advice_content, t_create_time, 
+      n_create_id)
+    values (#{nAdviceId,jdbcType=BIGINT}, #{cAdviceContent,jdbcType=VARCHAR}, #{tCreateTime,jdbcType=TIMESTAMP}, 
+      #{nCreateId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Advice" >
+    insert into t_advice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nAdviceId != null" >
+        n_advice_id,
+      </if>
+      <if test="cAdviceContent != null" >
+        c_advice_content,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+      <if test="nCreateId != null" >
+        n_create_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nAdviceId != null" >
+        #{nAdviceId,jdbcType=BIGINT},
+      </if>
+      <if test="cAdviceContent != null" >
+        #{cAdviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nCreateId != null" >
+        #{nCreateId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.Advice" >
+    update t_advice
+    <set >
+      <if test="cAdviceContent != null" >
+        c_advice_content = #{cAdviceContent,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nCreateId != null" >
+        n_create_id = #{nCreateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where n_advice_id = #{nAdviceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.Advice" >
+    update t_advice
+    set c_advice_content = #{cAdviceContent,jdbcType=VARCHAR},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      n_create_id = #{nCreateId,jdbcType=BIGINT}
+    where n_advice_id = #{nAdviceId,jdbcType=BIGINT}
+  </update>
+</mapper>

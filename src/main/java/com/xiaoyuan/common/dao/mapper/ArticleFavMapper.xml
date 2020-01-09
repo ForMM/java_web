@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.ArticleFavMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.ArticleFav" >
+    <id column="n_fav_id" property="nFavId" jdbcType="BIGINT" />
+    <result column="n_article_id" property="nArticleId" jdbcType="BIGINT" />
+    <result column="n_user_id" property="nUserId" jdbcType="BIGINT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.ArticleFav" >
+    insert into t_article_fav (n_fav_id, n_article_id, n_user_id, 
+      t_create_time)
+    values (#{nFavId,jdbcType=BIGINT}, #{nArticleId,jdbcType=BIGINT}, #{nUserId,jdbcType=BIGINT}, 
+      #{tCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.ArticleFav" >
+    insert into t_article_fav
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nFavId != null" >
+        n_fav_id,
+      </if>
+      <if test="nArticleId != null" >
+        n_article_id,
+      </if>
+      <if test="nUserId != null" >
+        n_user_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nFavId != null" >
+        #{nFavId,jdbcType=BIGINT},
+      </if>
+      <if test="nArticleId != null" >
+        #{nArticleId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <delete id="deleteByArticleIdAndUserId">
+  delete from t_article_fav where n_user_id=#{userId} and n_article_id=#{articleId}
+  </delete>
+  <select id="findByUserIdAndArticleId" resultMap="BaseResultMap">
+  select * from t_article_fav where n_user_id=#{userId} and n_article_id=#{articleId}
+  </select>
+  
+  <select id="findByParam" resultMap="BaseResultMap">
+  select * from t_article_fav
+  <where>
+   <if test="userId!=null">
+   and n_user_id=#{userId}
+   </if>
+  </where>
+  order by t_create_time desc
+  <if test="startRow!=null">
+  limit #{startRow},#{pageSize}
+  </if>
+  </select>
+  
+  <select id="countByParam" resultType="java.lang.Integer">
+  select count(*) from t_article_fav
+  <where>
+   <if test="userId!=null">
+   and n_user_id=#{userId}
+   </if>
+  </where>
+  </select>
+</mapper>

@@ -1,0 +1,580 @@
+body{
+	    font-family: -apple-system,"PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif;
+} 
+ol, ul {
+    list-style: none;
+}
+a:focus, a:hover{
+	color: #fff;
+}
+.header{
+	width: 100%;
+    height: 80px;
+	background: url("../../common/img/validate-back.png") no-repeat center;
+    background-size: cover;  
+    min-width: 1220px;
+}
+.xiaoyuan-inner,.account-div,.live-div,.common-live-div{
+	margin:0 auto;
+}
+.header .xiaoyuan-inner h1 {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    position: relative;
+    float: left;
+    width: 300px;
+    padding-left: 155px;
+}
+.header .xiaoyuan-inner h1:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 130px;
+    height: 32px;
+    width: 1px;
+    background-color: #abdcba;
+}
+.account-div .nav{
+	display: inline-block;
+    float: left;
+    width:182px;
+    background:#F0F0F0;
+    margin-top:20px;
+}
+.nav ul{
+	list-style: none;
+    padding: 0;
+}
+.nav ul li{
+	height: 42px;
+    line-height: 42px;
+	text-align:center;
+	cursor:pointer;
+}
+.nav ul li.selected{
+	color:green;
+}
+.profile-info,.profile-info-list{
+	width: 900px;
+    background-color: #fff;
+    height: 309px;
+    float: left;
+    margin-left: 25px;
+    position: relative;
+    box-sizing: border-box;
+    padding-left:50px;
+    padding-top:10px;
+}
+.modify-btn{
+	width: 106px;
+    line-height: 28px;
+    border: 1px solid #44ba42;
+    color: #44ba42;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    right: 60px;
+    top: 30px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.addTeacher-btn{
+	width: 106px;
+    line-height: 28px;
+    border: 1px solid #44ba42;
+    color: #44ba42;
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    right: 26px;
+    top: 30px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.account-info{
+	overflow:hidden;
+}
+.account-info h3{
+	margin-top:0;
+	font-size: 18px;
+	font-weight:bold;
+    color: #333;
+}
+.account-info .avatar{
+	margin-left: 67px;
+    margin-top: 60px;
+    float: left;
+    text-align:center;
+}
+.account-info .avatar img{
+	width: 82px;
+    height: 82px;
+    border-radius: 50%;
+}
+.man-info,.user-man-info{
+	float: left;
+    margin-left: 80px;
+    margin-top: 18px;    
+}
+.user-man-info{
+	width:80%;
+}
+.man-info .unit-info,.data-info .unit-info,.user-man-info .unit-info{
+	margin-top: 22px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+   
+}
+.man-info .unit-info span,.user-man-info .unit-info span{
+	margin-top: 10px;
+	padding-left:20px;
+}
+.man-info  .unit-info label,.data-info  .unit-info label,.user-man-info .unit-info label{
+	width:100px;
+}
+.formcontrl{	
+    background: #fff;
+    height: 36px;
+    color: #494949!important;
+    font-size: 14px!important;
+    
+    padding-left: 10px;  
+}
+.unit-info input,.unit-info select,.unit-info textarea{
+	width:272px;
+	border-radius: 3px!important;
+    border: 1px solid #ddd;
+}
+.account-info-modify h3{
+	margin-top: 0;
+    font-size: 18px;
+    font-weight:bold;
+    color: #333;
+}
+.account-info-modify .buttons{
+	margin-top: 35px;
+    margin-left: 80px;
+    float: left;
+}
+.account-info-modify .buttons .btn
+{
+    width: 130px;
+    height: 40px; 
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+.account-info-modify .buttons .btn-save
+{
+    background-color: #44b542;
+    color: #fff;
+}
+
+.input-file {
+    position: absolute;
+    height: 30px;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -moz-opacity: 0;
+   	width: 150px;
+    margin-top: -45px;
+    margin-left:-15px;
+}
+.avatar a {
+    display: block;
+    position: relative;
+    margin: 12px 0;
+    border: 1px solid #45b542;
+    background-color: #fff;
+    color: #45b542;
+    height: 36px;
+    line-height: 36px;
+    width: 120px;
+    border-radius: 3px;
+    text-align: center;
+    margin-left: 10px;
+}
+.avatar>span{
+	display:block;
+} 
+.account-school-ul{
+	position:absolute;	
+	border:1px solid #CCCCCC;
+	border-radius:5px;
+	max-height:100px;
+	overflow:auto;
+	z-index:9999;
+	background: white;
+	padding-left:0;
+	margin-left:84px;
+	display:none;
+	width:272px;
+}
+.account-school-ul li{
+	list-style: none;
+    margin: 0;
+    padding: 2px 12px;
+  	cursor:pointer;
+}
+.account-school-ul li:hover{
+	background-color:#1989FA;
+	color:#fff;
+}
+
+.live-div div{
+	width:50%;
+	float:left;	
+	text-align:center;
+	margin-top:80px;
+}
+.live-div div>a.normal{
+	padding:10px 20px;
+	background:#6CBB71;
+	border-radius:5px;
+	font-size:18px;
+	color:#fff;
+	border:0;
+	text-decoration:none;
+}
+
+.data-info{
+    width: 600px;
+    margin: 0 auto;
+}
+.common-live-div .anth-div{
+	margin-left: 67px;
+    margin-top: 50px;
+    float: left;
+    text-align: center;
+}
+.common-live-div .anth-div img
+{
+	width: 150px;
+    height: 150px;   
+}
+
+.anth-div{
+	width: 100%;    
+    margin-top: 60px;   
+    text-align: center;
+}
+.anth-div>span{
+	display:block;
+	margin: 0 auto;
+    width: 120px;
+} 
+.anth-div>span a
+{
+	display: block;
+    position: relative;
+    margin: 12px 0;
+    border: 1px solid #45b542;
+    background-color: #fff;
+    color: #45b542;
+    height: 36px;
+    line-height: 36px;
+    width: 150px;
+    border-radius: 3px;
+    text-align: center;
+    margin-left: -15px;
+}
+
+.common-live-div .buttons
+{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.common-live-div .buttons .btn
+{
+    width: 130px;
+    height: 40px; 
+    text-align: center;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+.common-live-div .buttons .btn-save
+{
+    background-color: #44b542;
+    color: #fff;
+}
+.xiaoyuan-inner .user {
+    position: relative;
+    float: right;
+    margin-top: 40px;
+    width: 250px;
+    text-align:center;
+}
+.xiaoyuan-inner .avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    margin: 2px;
+}
+
+/**
+ÆóÒµÈë×¤css
+**/
+
+.validate-flow{
+	height:60px;
+	background: url("../../common/img/validate-back.png") no-repeat center;
+    background-size: cover;
+}
+.org-form-div{
+	width:500px;
+	margin:40px auto;
+
+}
+.org-logo-div{
+	display:inline-block;
+	height:100px;
+	width:100px;
+}
+.org-logo-div img{
+	width: 100%;
+    height: 100%;
+    border:0;   
+}
+.org-logo-div>span{
+	display:block;
+	margin: 0 auto;
+    width: 100px;
+} 
+.org-logo-div>span a
+{
+	display: block;
+    position: relative;
+    margin: 2px 0;
+    border: 1px solid #45b542;
+    background-color: #fff;
+    color: #45b542;
+    height: 24px;    
+    border-radius: 3px;
+    text-align: center;  
+}
+.org-logo-div>span input{
+	 width: 100px;
+}
+.org-label-logo{
+	position: relative;
+    top: -100px;
+}
+.org-form-div form .unit-info div{
+	margin-left: 20px;
+}
+.org-form-div form .unit-info input{
+	margin-left: 20px;
+}
+.org-file{	
+	position: absolute;
+    opacity: 0;
+    filter: alpha(opacity = 0);
+    -moz-opacity: 0;
+    width: 120px;
+    margin-top: -25px; 
+}
+.org-form-div form .unit-info{
+	margin-top:15px;
+}
+.unit-info label{
+	width: 100px;
+}
+.org-textarea{
+	margin-left: 20px;
+}
+.org-form-div form .save-div{
+	margin-top:20px;	
+}
+.org-form-div form .save-div input{
+	margin-left:110px;
+	width:100px;
+	padding: 5px 12px;
+    background-color: #1989FA;
+    color: #fff;
+    cursor: pointer;
+    border:0;
+}
+.xiaoyuan-inner .user  .user-info-dropdown {
+   	display: none; 
+    position: absolute;
+    top: 61px;
+    right: 0;
+    width: 240px;
+}
+
+.xiaoyuan-inner .user > div .user-info-dropdown .info-cell {
+    padding-left: 90px;
+    position: relative;
+    height: 90px;
+    background-color: #262C30;
+}
+.xiaoyuan-inner .user .user-info-dropdown .info-cell ul
+{
+	padding-top: 14px;
+}
+.xiaoyuan-inner .user .user-info-dropdown .info-cell ul li {
+    line-height: 20px;
+    height: 20px;
+    color: #fff;
+}
+.xiaoyuan-inner .user .user-info-dropdown>.info-cell {   
+    position: relative;
+    height: 90px;
+    background-color: #262C30;
+}
+.major-span {
+	padding-right:5px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.grade-span{
+		padding-left:5px;
+}
+.org-label-intro{
+	position: relative;
+    top: -50px;
+}
+.renzheng-flow{	
+	width:60%;
+	float:left;
+}
+.renzheng-flow>div{
+	margin-top: 10px;
+	float:left;
+	text-align:center;
+	width:25%;
+}
+.flow-num{
+	width:35px;
+	height:35px;
+	background:#fff;
+	border-radius:50%;
+	text-align:center;
+	padding-top:5px;
+	font-size:18px;
+	margin: 0 auto;
+	color:#32CDC0;
+}
+.flow-word{
+	margin-top:5px;
+	color:#fff;
+}
+.live-info{
+	display:inline-block;
+	height:auto;
+	padding-left:20px;
+}
+.forbid{
+	padding: 10px 20px;
+    background: #ddd;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #fff;
+    border: 0;
+    text-decoration: none;
+}
+.flow-selected
+{
+    background: rgba(18,200,185,0.9);
+    color:#fff;
+}
+.flow-failed{
+	background: rgba(255,0,0,0.9);
+    color:#fff;
+}
+.intro-org{
+	position: relative;
+   
+    display: inline;
+}
+.word-intro{
+	width: 60%;  
+    display: inline-block;
+    overflow: hidden;
+    margin-left: 40px;
+    line-height:16px;
+}
+.account-info-unit{
+	margin-top:30px;
+	padding-bottom: 20px;
+	overflow:hidden;
+	border-bottom:1px solid #ddd;
+}
+.account-info-unit>.avatar{
+	float:left;
+	width:15%;
+}
+.account-info-unit .avatar img{
+	width: 82px;
+    height: 82px;
+    border-radius: 50%;
+}
+.account-info-unit>.org-info{
+	float:left;
+	width:80%;
+}
+.input-div{
+	margin-top:20px;
+}
+.input-div div{
+	display:inline-block;
+}
+.teacher-input{
+	width: 400px;
+}
+
+
+
+@media (max-width: 1600px) {
+  .profile-info, .profile-info-list{
+  	width:1013px;
+  }
+}
+
+@media (max-width: 1280px) {
+   .profile-info, .profile-info-list{
+  	width:980px;
+  }
+}
+
+@media (max-width: 1024px) {
+ .profile-info, .profile-info-list{
+  	width:580px;
+  }
+  .account-info .avatar {
+    margin-left: 0px;
+}
+}
+
+@media (max-width: 767px) {
+     .iframediv-main{
+  		width: 980px; 
+		min-height: 800px;
+  }
+}
+
+@media (max-width: 640px) {
+    .iframediv-main{
+  		width: 980px; 
+		min-height: 800px;
+  }
+}
+
+@media (max-width: 640px) {
+   .iframediv-main{
+  		width: 980px; 
+		min-height: 800px;
+  }
+}
+
+@media (max-width: 520px) {
+    .iframediv-main{
+  		width: 980px; 
+		min-height: 800px;
+  }
+}
+
+

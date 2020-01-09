@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Comment" >
+    <id column="n_comment_id" property="nCommentId" jdbcType="BIGINT" />
+    <result column="c_comment_content" property="cCommentContent" jdbcType="VARCHAR" />
+    <result column="n_comment_type" property="nCommentType" jdbcType="BIT" />
+    <result column="n_target_id" property="nTargetId" jdbcType="BIGINT" />
+    <result column="n_user_id" property="nUserId" jdbcType="BIGINT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+    <result column="n_status" property="nStatus" jdbcType="TINYINT" />
+     <result column="n_parent_id" property="nParentId" jdbcType="BIGINT" />
+      <result column="n_is_read" property="nIsRead" jdbcType="TINYINT" />
+     <result column="n_reply_user_id" property="nReplyUserId" jdbcType="BIGINT" />
+      <result column="n_top_comment_id" property="nTopCommentId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_comment_id, c_comment_content, n_comment_type, n_target_id, n_user_id, t_create_time, 
+    n_status,n_parent_id,n_is_read,n_reply_user_id,n_top_comment_id
+    </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_comment
+    where n_comment_id = #{nCommentId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_comment
+    where n_comment_id = #{nCommentId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Comment" useGeneratedKeys="true" keyProperty="nCommentId" >
+    insert into t_comment (n_comment_id, c_comment_content, n_comment_type, 
+      n_target_id, n_user_id, t_create_time, 
+      n_status,n_parent_id,n_is_read,n_reply_user_id,n_top_comment_id)
+    values (#{nCommentId,jdbcType=BIGINT}, #{cCommentContent,jdbcType=VARCHAR}, #{nCommentType,jdbcType=BIT}, 
+      #{nTargetId,jdbcType=BIGINT}, #{nUserId,jdbcType=BIGINT}, #{tCreateTime,jdbcType=TIMESTAMP}, 
+      #{nStatus,jdbcType=TINYINT},#{nParentId,jdbcType=BIGINT},#{nIsRead,jdbcType=TINYINT},#{nReplyUserId,jdbcType=BIGINT},#{nTopCommentId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Comment" useGeneratedKeys="true" keyProperty="nCommentId">
+    insert into t_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nCommentId != null" >
+        n_comment_id,
+      </if>
+      <if test="cCommentContent != null" >
+        c_comment_content,
+      </if>
+      <if test="nCommentType != null" >
+        n_comment_type,
+      </if>
+      <if test="nTargetId != null" >
+        n_target_id,
+      </if>
+      <if test="nUserId != null" >
+        n_user_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+      <if test="nStatus != null" >
+        n_status,
+      </if>
+      <if test="nParentId != null" >
+        n_parent_id,
+      </if>
+        <if test="nIsRead != null" >
+        n_is_read,
+      </if>
+       <if test="nReplyUserId != null" >
+        n_reply_user_id,
+      </if>
+       <if test="nTopCommentId != null" >
+        n_top_comment_id
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nCommentId != null" >
+        #{nCommentId,jdbcType=BIGINT},
+      </if>
+      <if test="cCommentContent != null" >
+        #{cCommentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nCommentType != null" >
+        #{nCommentType,jdbcType=BIT},
+      </if>
+      <if test="nTargetId != null" >
+        #{nTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nStatus != null" >
+        #{nStatus,jdbcType=TINYINT},
+      </if>
+       <if test="nParentId != null" >
+        #{nParentId,jdbcType=BIGINT},
+      </if>
+      <if test="nIsRead != null" >
+       #{nIsRead,jdbcType=TINYINT},
+      </if>
+       <if test="nReplyUserId != null" >
+       #{nReplyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nTopCommentId != null" >
+        #{nTopCommentId,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.Comment" >
+    update t_comment
+    <set >
+      <if test="cCommentContent != null" >
+        c_comment_content = #{cCommentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nCommentType != null" >
+        n_comment_type = #{nCommentType,jdbcType=BIT},
+      </if>
+      <if test="nTargetId != null" >
+        n_target_id = #{nTargetId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        n_user_id = #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nStatus != null" >
+        n_status = #{nStatus,jdbcType=TINYINT},
+      </if>
+      <if test="nParentId != null" >
+        n_parent_id = #{nParentId,jdbcType=TINYINT},
+      </if>
+      <if test="nIsRead != null" >
+       n_is_read =#{nIsRead,jdbcType=TINYINT},
+      </if>
+       <if test="nReplyUserId != null" >
+       n_reply_user_id = #{nReplyUserId,jdbcType=BIGINT},
+      </if>
+       <if test="nTopCommentId != null" >
+        n_top_comment_id=#{nTopCommentId,jdbcType=BIGINT}
+      </if>
+    </set>
+    where n_comment_id = #{nCommentId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.Comment" >
+    update t_comment
+    set c_comment_content = #{cCommentContent,jdbcType=VARCHAR},
+      n_comment_type = #{nCommentType,jdbcType=BIT},
+      n_target_id = #{nTargetId,jdbcType=BIGINT},
+      n_user_id = #{nUserId,jdbcType=BIGINT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      n_status = #{nStatus,jdbcType=TINYINT},
+      n_parent_id = #{nParentId,jdbcType=TINYINT},
+      n_is_read = #{nIsRead,jdbcType=TINYINT},
+      n_reply_user_id #{nReplyUserId,jdbcType=BIGINT},
+      n_top_comment_id=#{nTopCommentId,jdbcType=BIGINT}
+    where n_comment_id = #{nCommentId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findByParam" resultMap="BaseResultMap">
+  select * from t_comment
+  <where>
+  n_status=1
+  <if test="targetId!=null">
+   and n_target_id = #{targetId,jdbcType=BIGINT}
+  </if>
+  <if test="commentType!=null">
+   and n_comment_type = #{commentType,jdbcType=BIGINT}
+  </if>
+  <if test="nParentId!=null">
+   and n_parent_id = #{nParentId,jdbcType=BIGINT}
+  </if>
+  <if test="isTop==1">
+   and n_parent_id = 0
+  </if>
+  <if test="isTop==0">
+   and n_parent_id != 0
+  </if>
+  <if test="nIsRead!=null">
+   and n_is_read = #{nIsRead,jdbcType=BIGINT}
+  </if>
+  <if test="nReplyUserId!=null">
+   and n_reply_user_id = #{nReplyUserId,jdbcType=BIGINT}
+  </if>
+   <if test="creatId!=null">
+   and n_user_id != #{creatId,jdbcType=BIGINT}
+  </if>
+  <if test="nTopCommentId != null" >
+   and n_top_comment_id=#{nTopCommentId,jdbcType=BIGINT}
+   </if>
+  </where>
+  order by t_create_time desc
+  <if test="startRow!=null">
+  limit #{startRow},#{pageSize}
+  </if>
+  </select>
+  
+   <select id="countByParam" resultType="java.lang.Integer">
+  select count(*) from t_comment
+  <where>
+  n_status=1
+  <if test="targetId!=null">
+   and n_target_id = #{targetId,jdbcType=BIGINT}
+  </if>
+  <if test="commentType!=null">
+   and n_comment_type = #{commentType,jdbcType=BIGINT}
+  </if>
+  <if test="nParentId!=null">
+   and n_parent_id = #{nParentId,jdbcType=BIGINT}
+  </if>
+  <if test="isTop==1">
+   and n_parent_id = 0
+  </if>
+  <if test="isTop==0">
+   and n_parent_id != 0
+  </if>
+  <if test="nIsRead!=null">
+   and n_is_read = #{nIsRead,jdbcType=BIGINT}
+  </if>
+  <if test="nReplyUserId!=null">
+   and n_reply_user_id = #{nReplyUserId,jdbcType=BIGINT}
+  </if>
+   <if test="creatId!=null">
+   and n_user_id != #{creatId,jdbcType=BIGINT}
+  </if>
+   <if test="nTopCommentId != null" >
+   and n_top_comment_id=#{nTopCommentId,jdbcType=BIGINT}
+   </if>
+  </where>
+  </select>
+  
+  
+  <select id="myComments" resultMap="BaseResultMap">
+  select * from t_comment
+  <where>
+  n_status=1
+  <if test="commentType!=null">
+   and n_comment_type = #{commentType,jdbcType=BIGINT}
+  </if>
+  <if test="nReplyUserId!=null">
+   and n_reply_user_id = #{nReplyUserId,jdbcType=BIGINT}
+  </if>
+  </where>
+  order by n_is_read desc,t_create_time desc
+  <if test="startRow!=null">
+  limit #{startRow},#{pageSize}
+  </if>
+  </select>
+  <select id="myCommentsCount" resultType="java.lang.Integer">
+  select count(*) from t_comment
+  <where>
+  n_status=1
+  <if test="commentType!=null">
+   and n_comment_type = #{commentType,jdbcType=BIGINT}
+  </if>
+  <if test="nReplyUserId!=null">
+   and n_reply_user_id = #{nReplyUserId,jdbcType=BIGINT}
+  </if>
+  </where>
+  order by n_is_read desc,t_create_time desc
+  <if test="startRow!=null">
+  limit #{startRow},#{pageSize}
+  </if>
+  </select>
+</mapper>

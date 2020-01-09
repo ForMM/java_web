@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.UserFansMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.UserFans" >
+    <id column="n_userfans_id" property="nUserfansId" jdbcType="BIGINT" />
+    <result column="n_user_id" property="nUserId" jdbcType="BIGINT" />
+    <result column="n_fans_id" property="nFansId" jdbcType="BIGINT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_userfans_id, n_user_id, n_fans_id, t_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_fans
+    where n_userfans_id = #{nUserfansId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user_fans
+    where n_userfans_id = #{nUserfansId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.UserFans" >
+    insert into t_user_fans (n_userfans_id, n_user_id, n_fans_id, 
+      t_create_time)
+    values (#{nUserfansId,jdbcType=BIGINT}, #{nUserId,jdbcType=BIGINT}, #{nFansId,jdbcType=BIGINT}, 
+      #{tCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.UserFans" >
+    insert into t_user_fans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nUserfansId != null" >
+        n_userfans_id,
+      </if>
+      <if test="nUserId != null" >
+        n_user_id,
+      </if>
+      <if test="nFansId != null" >
+        n_fans_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nUserfansId != null" >
+        #{nUserfansId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nFansId != null" >
+        #{nFansId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.UserFans" >
+    update t_user_fans
+    <set >
+      <if test="nUserId != null" >
+        n_user_id = #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nFansId != null" >
+        n_fans_id = #{nFansId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where n_userfans_id = #{nUserfansId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.UserFans" >
+    update t_user_fans
+    set n_user_id = #{nUserId,jdbcType=BIGINT},
+      n_fans_id = #{nFansId,jdbcType=BIGINT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP}
+    where n_userfans_id = #{nUserfansId,jdbcType=BIGINT}
+  </update>
+  <select id="findByParam" parameterType="java.util.Map" resultMap= "BaseResultMap">
+  select * from t_user_fans
+  <where>
+    <if test="userId!=null">
+    and n_user_id = #{userId}
+    </if>
+    <if test="fansId!=null">
+    and n_fans_id=#{fansId}
+    </if>
+  </where>
+   order by t_create_time desc
+   <if test="startRow!=null">
+   limit #{startRow},#{pageSize}
+   </if>
+  </select>
+  <select id="countByParam" parameterType="java.util.Map" resultType= "java.lang.Integer">
+  select count(*) from t_user_fans
+  <where>
+    <if test="userId!=null">
+    and n_user_id = #{userId}
+    </if>
+    <if test="fansId!=null">
+    and n_fans_id=#{fansId}
+    </if>
+  </where>
+  </select>
+</mapper>

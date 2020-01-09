@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.CourseUserMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.CourseUser" >
+    <id column="n_course_user_id" property="nCourseUserId" jdbcType="BIGINT" />
+    <result column="n_user_id" property="nUserId" jdbcType="BIGINT" />
+    <result column="n_course_id" property="nCourseId" jdbcType="BIGINT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_course_user_id, n_user_id, n_course_id, t_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_course_user
+    where n_course_user_id = #{nCourseUserId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_course_user
+    where n_course_user_id = #{nCourseUserId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.CourseUser" >
+    insert into t_course_user (n_course_user_id, n_user_id, n_course_id, 
+      t_create_time)
+    values (#{nCourseUserId,jdbcType=BIGINT}, #{nUserId,jdbcType=BIGINT}, #{nCourseId,jdbcType=BIGINT}, 
+      #{tCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.CourseUser" >
+    insert into t_course_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nCourseUserId != null" >
+        n_course_user_id,
+      </if>
+      <if test="nUserId != null" >
+        n_user_id,
+      </if>
+      <if test="nCourseId != null" >
+        n_course_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nCourseUserId != null" >
+        #{nCourseUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nCourseId != null" >
+        #{nCourseId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.CourseUser" >
+    update t_course_user
+    <set >
+      <if test="nUserId != null" >
+        n_user_id = #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nCourseId != null" >
+        n_course_id = #{nCourseId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where n_course_user_id = #{nCourseUserId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.CourseUser" >
+    update t_course_user
+    set n_user_id = #{nUserId,jdbcType=BIGINT},
+      n_course_id = #{nCourseId,jdbcType=BIGINT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP}
+    where n_course_user_id = #{nCourseUserId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findByParam" resultMap = "BaseResultMap" parameterType = "java.util.Map">
+    select * from t_course_user
+    <where>
+      <if test="userId!=null">
+      and  n_user_id = #{userId}
+      </if>
+      <if test="courseId!=null">
+      and   n_course_id = #{courseId}
+      </if>
+    </where>
+    order by t_create_time desc
+    <if test="startRow!=null">
+    limit #{startRow},#{pageSize}
+    </if>
+  </select>
+  
+  <select id="countByParam" resultType="java.lang.Integer" parameterType = "java.util.Map">
+    select count(*) from t_course_user
+    <where>
+      <if test="userId!=null">
+      and  n_user_id = #{userId}
+      </if>
+      <if test="courseId!=null">
+      and   n_course_id = #{courseId}
+      </if>
+    </where>
+  </select>
+</mapper>

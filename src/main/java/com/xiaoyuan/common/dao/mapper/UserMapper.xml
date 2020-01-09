@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.User" >
+    <id column="n_user_id" property="nUserId" jdbcType="BIGINT" />
+    <result column="c_user_account" property="cUserAccount" jdbcType="VARCHAR" />
+    <result column="c_user_password" property="cUserPassword" jdbcType="VARCHAR" />
+    <result column="c_user_realname" property="cUserRealname" jdbcType="VARCHAR" />
+    <result column="c_user_portrait" property="cUserPortrait" jdbcType="VARCHAR" />
+    <result column="c_user_introduce" property="cUserIntroduce" jdbcType="VARCHAR" />
+    <result column="c_mobile_phone" property="cMobilePhone" jdbcType="VARCHAR" />
+    <result column="n_school_id" property="nSchoolId" jdbcType="BIGINT" />
+    <result column="c_school_name" property="cSchoolName" jdbcType="VARCHAR" />
+    <result column="c_major" property="cMajor" jdbcType="VARCHAR" />
+    <result column="c_grade" property="cGrade" jdbcType="VARCHAR" />
+    <result column="c_user_code" property="cUserCode" jdbcType="VARCHAR" />
+    <result column="c_user_code_img" property="cUserCodeImg" jdbcType="VARCHAR" />
+    <result column="n_sex" property="nSex" jdbcType="BIT" />
+    <result column="n_auth_status" property="nAuthStatus" jdbcType="TINYINT" />
+    <result column="c_auth_imgs" property="cAuthImgs" jdbcType="VARCHAR" />
+    <result column="c_course_type" property="cCourseType" jdbcType="VARCHAR" />
+    <result column="n_user_type" property="nUserType" jdbcType="BIT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+    <result column="t_update_time" property="tUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="n_count_fans" property="nCountFans" jdbcType="INTEGER" />
+    <result column="n_count_attentions" property="nCountAttentions" jdbcType="INTEGER" />
+    <result column="c_addr" property="cAddr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_user_id, c_user_account, c_user_password, c_user_realname, c_user_portrait, c_user_introduce, 
+    c_mobile_phone, n_school_id, c_school_name, c_major, c_grade, c_user_code, c_user_code_img, n_sex, 
+    n_auth_status, c_auth_imgs, c_course_type, n_user_type, t_create_time, t_update_time,n_count_fans,n_count_attentions,
+    c_addr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where n_user_id = #{nUserId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user
+    where n_user_id = #{nUserId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.User" >
+    insert into t_user (n_user_id, c_user_account, c_user_password, 
+      c_user_realname, c_user_portrait, c_user_introduce, 
+      c_mobile_phone, n_school_id, c_school_name, 
+      c_major, c_grade, c_user_code, c_user_code_img,
+      n_sex, n_auth_status, c_auth_imgs, 
+      c_course_type, n_user_type, t_create_time, 
+      t_update_time,n_count_fans,n_count_attentions,c_addr)
+    values (#{nUserId,jdbcType=BIGINT}, #{cUserAccount,jdbcType=VARCHAR}, #{cUserPassword,jdbcType=VARCHAR}, 
+      #{cUserRealname,jdbcType=VARCHAR}, #{cUserPortrait,jdbcType=VARCHAR}, #{cUserIntroduce,jdbcType=VARCHAR}, 
+      #{cMobilePhone,jdbcType=VARCHAR}, #{nSchoolId,jdbcType=BIGINT}, #{cSchoolName,jdbcType=VARCHAR}, 
+      #{cMajor,jdbcType=VARCHAR}, #{cGrade,jdbcType=VARCHAR}, #{cUserCode,jdbcType=VARCHAR}, #{cUserCodeImg,jdbcType=VARCHAR}, 
+      #{nSex,jdbcType=BIT}, #{nAuthStatus,jdbcType=TINYINT}, #{cAuthImgs,jdbcType=VARCHAR}, 
+      #{cCourseType,jdbcType=VARCHAR}, #{nUserType,jdbcType=BIT}, #{tCreateTime,jdbcType=TIMESTAMP}, 
+      #{tUpdateTime,jdbcType=TIMESTAMP},#{nCountFans,jdbcType=INTEGER},#{nCountAttentions,jdbcType=INTEGER},
+      #{cAddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nUserId != null" >
+        n_user_id,
+      </if>
+      <if test="cUserAccount != null" >
+        c_user_account,
+      </if>
+      <if test="cUserPassword != null" >
+        c_user_password,
+      </if>
+      <if test="cUserRealname != null" >
+        c_user_realname,
+      </if>
+      <if test="cUserPortrait != null" >
+        c_user_portrait,
+      </if>
+      <if test="cUserIntroduce != null" >
+        c_user_introduce,
+      </if>
+      <if test="cMobilePhone != null" >
+        c_mobile_phone,
+      </if>
+      <if test="nSchoolId != null" >
+        n_school_id,
+      </if>
+      <if test="cSchoolName != null" >
+        c_school_name,
+      </if>
+      <if test="cMajor != null" >
+        c_major,
+      </if>
+      <if test="cGrade != null" >
+        c_grade,
+      </if>
+      <if test="cUserCode != null" >
+        c_user_code,
+      </if>
+      <if test="cUserCodeImg != null" >
+        c_user_code_img,
+      </if>
+      <if test="nSex != null" >
+        n_sex,
+      </if>
+      <if test="nAuthStatus != null" >
+        n_auth_status,
+      </if>
+      <if test="cAuthImgs != null" >
+        c_auth_imgs,
+      </if>
+      <if test="cCourseType != null" >
+        c_course_type,
+      </if>
+      <if test="nUserType != null" >
+        n_user_type,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time,
+      </if>
+      <if test="nCountFans != null" >
+        n_count_fans,
+      </if>
+      <if test="nCountAttentions != null" >
+        n_count_attentions,
+      </if>
+      <if test="cAddr != null" >
+        c_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nUserId != null" >
+        #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="cUserAccount != null" >
+        #{cUserAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserPassword != null" >
+        #{cUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserRealname != null" >
+        #{cUserRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserPortrait != null" >
+        #{cUserPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserIntroduce != null" >
+        #{cUserIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="cMobilePhone != null" >
+        #{cMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="nSchoolId != null" >
+        #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="cSchoolName != null" >
+        #{cSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="cMajor != null" >
+        #{cMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="cGrade != null" >
+        #{cGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserCode != null" >
+        #{cUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserCodeImg != null" >
+        #{cUserCodeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nSex != null" >
+        #{nSex,jdbcType=BIT},
+      </if>
+      <if test="nAuthStatus != null" >
+        #{nAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="cAuthImgs != null" >
+        #{cAuthImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="cCourseType != null" >
+        #{cCourseType,jdbcType=VARCHAR},
+      </if>
+      <if test="nUserType != null" >
+        #{nUserType,jdbcType=BIT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="nCountFans != null" >
+        #{nCountFans,jdbcType=INTEGER},
+      </if>
+      <if test="nCountAttentions != null" >
+        #{nCountAttentions,jdbcType=INTEGER},
+      </if>
+       <if test="cAddr != null" >
+       #{cAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.User" >
+    update t_user
+    <set >
+      <if test="cUserAccount != null" >
+        c_user_account = #{cUserAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserPassword != null" >
+        c_user_password = #{cUserPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserRealname != null" >
+        c_user_realname = #{cUserRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserPortrait != null" >
+        c_user_portrait = #{cUserPortrait,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserIntroduce != null" >
+        c_user_introduce = #{cUserIntroduce,jdbcType=VARCHAR},
+      </if>
+      <if test="cMobilePhone != null" >
+        c_mobile_phone = #{cMobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="nSchoolId != null" >
+        n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="cSchoolName != null" >
+        c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="cMajor != null" >
+        c_major = #{cMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="cGrade != null" >
+        c_grade = #{cGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserCode != null" >
+        c_user_code = #{cUserCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cUserCodeImg != null" >
+        c_user_code_img = #{cUserCodeImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nSex != null" >
+        n_sex = #{nSex,jdbcType=BIT},
+      </if>
+      <if test="nAuthStatus != null" >
+        n_auth_status = #{nAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="cAuthImgs != null" >
+        c_auth_imgs = #{cAuthImgs,jdbcType=VARCHAR},
+      </if>
+      <if test="cCourseType != null" >
+        c_course_type = #{cCourseType,jdbcType=VARCHAR},
+      </if>
+      <if test="nUserType != null" >
+        n_user_type = #{nUserType,jdbcType=BIT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="nCountFans != null" >
+       n_count_fans = #{nCountFans,jdbcType=INTEGER},
+      </if>
+      <if test="nCountAttentions != null" >
+       n_count_attentions = #{nCountAttentions,jdbcType=INTEGER},
+      </if>
+       <if test="cAddr != null" >
+       c_addr = #{cAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_user_id = #{nUserId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.User" >
+    update t_user
+    set c_user_account = #{cUserAccount,jdbcType=VARCHAR},
+      c_user_password = #{cUserPassword,jdbcType=VARCHAR},
+      c_user_realname = #{cUserRealname,jdbcType=VARCHAR},
+      c_user_portrait = #{cUserPortrait,jdbcType=VARCHAR},
+      c_user_introduce = #{cUserIntroduce,jdbcType=VARCHAR},
+      c_mobile_phone = #{cMobilePhone,jdbcType=VARCHAR},
+      n_school_id = #{nSchoolId,jdbcType=BIGINT},
+      c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      c_major = #{cMajor,jdbcType=VARCHAR},
+      c_grade = #{cGrade,jdbcType=VARCHAR},
+      c_user_code = #{cUserCode,jdbcType=VARCHAR},
+      c_user_code_img = #{cUserCodeImg,jdbcType=VARCHAR},
+      n_sex = #{nSex,jdbcType=BIT},
+      n_auth_status = #{nAuthStatus,jdbcType=TINYINT},
+      c_auth_imgs = #{cAuthImgs,jdbcType=VARCHAR},
+      c_course_type = #{cCourseType,jdbcType=VARCHAR},
+      n_user_type = #{nUserType,jdbcType=BIT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      n_count_fans = #{nCountFans,jdbcType=INTEGER},
+      n_count_attentions = #{nCountAttentions,jdbcType=INTEGER},
+      c_addr=#{cAddr,jdbcType=VARCHAR}
+    where n_user_id = #{nUserId,jdbcType=BIGINT}
+  </update>
+  <select id="login" resultMap="BaseResultMap">
+  	select * from t_user where c_user_account=#{account} and c_user_password=#{password}
+  </select>
+  <select id="findByAccount" resultMap="BaseResultMap">
+  	select * from t_user where c_user_account=#{account}
+  </select>
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.TagMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Tag" >
+    <id column="n_tag_id" property="nTagId" jdbcType="BIGINT" />
+    <result column="c_tag_name" property="cTagName" jdbcType="VARCHAR" />
+    <result column="n_tag_type" property="nTagType" jdbcType="INTEGER" />
+    <result column="n_create_id" property="nCreateId" jdbcType="BIGINT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_tag_id, c_tag_name, n_tag_type, n_create_id, t_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_tag
+    where n_tag_id = #{nTagId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_tag
+    where n_tag_id = #{nTagId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Tag" >
+    insert into t_tag (n_tag_id, c_tag_name, n_tag_type, 
+      n_create_id, t_create_time)
+    values (#{nTagId,jdbcType=BIGINT}, #{cTagName,jdbcType=VARCHAR}, #{nTagType,jdbcType=INTEGER}, 
+      #{nCreateId,jdbcType=BIGINT}, #{tCreateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Tag" >
+    insert into t_tag
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nTagId != null" >
+        n_tag_id,
+      </if>
+      <if test="cTagName != null" >
+        c_tag_name,
+      </if>
+      <if test="nTagType != null" >
+        n_tag_type,
+      </if>
+      <if test="nCreateId != null" >
+        n_create_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nTagId != null" >
+        #{nTagId,jdbcType=BIGINT},
+      </if>
+      <if test="cTagName != null" >
+        #{cTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="nTagType != null" >
+        #{nTagType,jdbcType=INTEGER},
+      </if>
+      <if test="nCreateId != null" >
+        #{nCreateId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.Tag" >
+    update t_tag
+    <set >
+      <if test="cTagName != null" >
+        c_tag_name = #{cTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="nTagType != null" >
+        n_tag_type = #{nTagType,jdbcType=INTEGER},
+      </if>
+      <if test="nCreateId != null" >
+        n_create_id = #{nCreateId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where n_tag_id = #{nTagId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.Tag" >
+    update t_tag
+    set c_tag_name = #{cTagName,jdbcType=VARCHAR},
+      n_tag_type = #{nTagType,jdbcType=INTEGER},
+      n_create_id = #{nCreateId,jdbcType=BIGINT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP}
+    where n_tag_id = #{nTagId,jdbcType=BIGINT}
+  </update>
+  <select id="articleTags" resultMap="BaseResultMap">
+  select * from t_tag where n_tag_type=1
+  </select>
+</mapper>

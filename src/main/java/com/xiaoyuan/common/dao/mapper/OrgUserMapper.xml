@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.OrgUserMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.OrgUser" >
+    <id column="n_org_user_id" property="nOrgUserId" jdbcType="BIGINT" />
+    <result column="n_org_id" property="nOrgId" jdbcType="BIGINT" />
+    <result column="n_user_id" property="nUserId" jdbcType="BIGINT" />
+    <result column="c_orguser_intro" property="cOrgUserIntro" jdbcType="VARCHAR" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_org_user_id, n_org_id, n_user_id, t_create_time,c_orguser_intro
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_org_user
+    where n_org_user_id = #{nOrgUserId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_org_user
+    where n_org_user_id = #{nOrgUserId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.OrgUser" >
+    insert into t_org_user (n_org_user_id, n_org_id, n_user_id, 
+      t_create_time,c_orguser_intro)
+    values (#{nOrgUserId,jdbcType=BIGINT}, #{nOrgId,jdbcType=BIGINT}, #{nUserId,jdbcType=BIGINT}, 
+      #{tCreateTime,jdbcType=TIMESTAMP}, #{cOrgUserIntro,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.OrgUser" >
+    insert into t_org_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nOrgUserId != null" >
+        n_org_user_id,
+      </if>
+      <if test="nOrgId != null" >
+        n_org_id,
+      </if>
+      <if test="nUserId != null" >
+        n_user_id,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+       <if test="cOrgUserIntro != null" >
+        c_orguser_intro,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nOrgUserId != null" >
+        #{nOrgUserId,jdbcType=BIGINT},
+      </if>
+      <if test="nOrgId != null" >
+        #{nOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="cOrgUserIntro != null" >
+        #{cOrgUserIntro,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.OrgUser" >
+    update t_org_user
+    <set >
+      <if test="nOrgId != null" >
+        n_org_id = #{nOrgId,jdbcType=BIGINT},
+      </if>
+      <if test="nUserId != null" >
+        n_user_id = #{nUserId,jdbcType=BIGINT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cOrgUserIntro != null" >
+        c_orguser_intro = #{cOrgUserIntro,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where n_org_user_id = #{nOrgUserId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.OrgUser" >
+    update t_org_user
+    set n_org_id = #{nOrgId,jdbcType=BIGINT},
+      n_user_id = #{nUserId,jdbcType=BIGINT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      c_orguser_intro = #{cOrgUserIntro,jdbcType=VARCHAR}
+    where n_org_user_id = #{nOrgUserId,jdbcType=BIGINT}
+  </update>
+  <select id="findByUserId" resultMap="BaseResultMap">
+  select * from t_org_user where n_user_id = #{userId}
+  </select>
+  <select id="findByOrgId" resultMap="BaseResultMap">
+  select * from t_org_user where n_org_id = #{orgId}
+  </select>
+</mapper>

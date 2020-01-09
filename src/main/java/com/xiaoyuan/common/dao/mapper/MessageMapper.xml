@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.Message" >
+    <id column="n_message_id" property="nMessageId" jdbcType="BIGINT" />
+    <result column="n_message_frome" property="nMessageFrome" jdbcType="BIGINT" />
+    <result column="n_message_to" property="nMessageTo" jdbcType="BIGINT" />
+    <result column="c_message_content" property="cMessageContent" jdbcType="VARCHAR" />
+    <result column="n_message_type" property="nMessageType" jdbcType="BIT" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_message_id, n_message_frome, n_message_to, c_message_content, n_message_type, t_create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_message
+    where n_message_id = #{nMessageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_message
+    where n_message_id = #{nMessageId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.Message" >
+    insert into t_message (n_message_id, n_message_frome, n_message_to, 
+      c_message_content, n_message_type, t_create_time
+      )
+    values (#{nMessageId,jdbcType=BIGINT}, #{nMessageFrome,jdbcType=BIGINT}, #{nMessageTo,jdbcType=BIGINT}, 
+      #{cMessageContent,jdbcType=VARCHAR}, #{nMessageType,jdbcType=BIT}, #{tCreateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.Message" >
+    insert into t_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nMessageId != null" >
+        n_message_id,
+      </if>
+      <if test="nMessageFrome != null" >
+        n_message_frome,
+      </if>
+      <if test="nMessageTo != null" >
+        n_message_to,
+      </if>
+      <if test="cMessageContent != null" >
+        c_message_content,
+      </if>
+      <if test="nMessageType != null" >
+        n_message_type,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nMessageId != null" >
+        #{nMessageId,jdbcType=BIGINT},
+      </if>
+      <if test="nMessageFrome != null" >
+        #{nMessageFrome,jdbcType=BIGINT},
+      </if>
+      <if test="nMessageTo != null" >
+        #{nMessageTo,jdbcType=BIGINT},
+      </if>
+      <if test="cMessageContent != null" >
+        #{cMessageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nMessageType != null" >
+        #{nMessageType,jdbcType=BIT},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.Message" >
+    update t_message
+    <set >
+      <if test="nMessageFrome != null" >
+        n_message_frome = #{nMessageFrome,jdbcType=BIGINT},
+      </if>
+      <if test="nMessageTo != null" >
+        n_message_to = #{nMessageTo,jdbcType=BIGINT},
+      </if>
+      <if test="cMessageContent != null" >
+        c_message_content = #{cMessageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nMessageType != null" >
+        n_message_type = #{nMessageType,jdbcType=BIT},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where n_message_id = #{nMessageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.Message" >
+    update t_message
+    set n_message_frome = #{nMessageFrome,jdbcType=BIGINT},
+      n_message_to = #{nMessageTo,jdbcType=BIGINT},
+      c_message_content = #{cMessageContent,jdbcType=VARCHAR},
+      n_message_type = #{nMessageType,jdbcType=BIT},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP}
+    where n_message_id = #{nMessageId,jdbcType=BIGINT}
+  </update>
+</mapper>

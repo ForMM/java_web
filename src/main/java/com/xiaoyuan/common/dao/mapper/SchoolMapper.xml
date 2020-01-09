@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoyuan.common.dao.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.xiaoyuan.common.entity.School" >
+    <id column="n_school_id" property="nSchoolId" jdbcType="BIGINT" />
+    <result column="c_school_name" property="cSchoolName" jdbcType="VARCHAR" />
+    <result column="c_pinyin_name" property="cPinyinName" jdbcType="VARCHAR" />
+    <result column="c_pinyin_short" property="cPinyinShort" jdbcType="VARCHAR" />
+    <result column="area_id" property="areaId" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="n_order" property="nOrder" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    n_school_id, c_school_name, c_pinyin_name, c_pinyin_short, area_id, area_name, n_order
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_school
+    where n_school_id = #{nSchoolId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_school
+    where n_school_id = #{nSchoolId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoyuan.common.entity.School" >
+    insert into t_school (n_school_id, c_school_name, c_pinyin_name, 
+      c_pinyin_short, area_id, area_name, 
+      n_order)
+    values (#{nSchoolId,jdbcType=BIGINT}, #{cSchoolName,jdbcType=VARCHAR}, #{cPinyinName,jdbcType=VARCHAR}, 
+      #{cPinyinShort,jdbcType=VARCHAR}, #{areaId,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, 
+      #{nOrder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoyuan.common.entity.School" >
+    insert into t_school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nSchoolId != null" >
+        n_school_id,
+      </if>
+      <if test="cSchoolName != null" >
+        c_school_name,
+      </if>
+      <if test="cPinyinName != null" >
+        c_pinyin_name,
+      </if>
+      <if test="cPinyinShort != null" >
+        c_pinyin_short,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="nOrder != null" >
+        n_order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nSchoolId != null" >
+        #{nSchoolId,jdbcType=BIGINT},
+      </if>
+      <if test="cSchoolName != null" >
+        #{cSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="cPinyinName != null" >
+        #{cPinyinName,jdbcType=VARCHAR},
+      </if>
+      <if test="cPinyinShort != null" >
+        #{cPinyinShort,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="nOrder != null" >
+        #{nOrder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoyuan.common.entity.School" >
+    update t_school
+    <set >
+      <if test="cSchoolName != null" >
+        c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="cPinyinName != null" >
+        c_pinyin_name = #{cPinyinName,jdbcType=VARCHAR},
+      </if>
+      <if test="cPinyinShort != null" >
+        c_pinyin_short = #{cPinyinShort,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="nOrder != null" >
+        n_order = #{nOrder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where n_school_id = #{nSchoolId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoyuan.common.entity.School" >
+    update t_school
+    set c_school_name = #{cSchoolName,jdbcType=VARCHAR},
+      c_pinyin_name = #{cPinyinName,jdbcType=VARCHAR},
+      c_pinyin_short = #{cPinyinShort,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      n_order = #{nOrder,jdbcType=INTEGER}
+    where n_school_id = #{nSchoolId,jdbcType=BIGINT}
+  </update>
+  
+  <select id="findByParam" resultMap="BaseResultMap">
+  select * from t_school
+  <if test="startRow!=null">
+  limit #{startRow},#{pageSize}
+  </if>
+  </select>
+  <select id="countByParam" resultType="java.lang.Integer">
+  select count(*) from t_school
+  </select>
+</mapper>
