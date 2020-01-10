@@ -398,11 +398,11 @@ public class UserServiceImpl implements UserService {
 		result.setInfo(Status.success_info);
 		
 		redisBean.delete(mobilePhone+"_"+FinVal.CHECK_CODE_TYPE_REGISTER);
-		boolean createEMUser = EMutil.createEMUser(mobilePhone, MUtil.md5(password), userName);
-		if(!createEMUser){
-			log.error("创建环信账户失败！！！");
-			throw new RuntimeException();
-		}
+//		boolean createEMUser = EMutil.createEMUser(mobilePhone, MUtil.md5(password), userName);
+//		if(!createEMUser){
+//			log.error("创建环信账户失败！！！");
+//			throw new RuntimeException();
+//		}
 		
 		return login(mobilePhone, password);
 	}
@@ -493,10 +493,10 @@ public class UserServiceImpl implements UserService {
 		user.settUpdateTime(new Date());
 		userMapper.updateByPrimaryKeySelective(user);
 		
-		boolean resetPwd = EMutil.resetPwd(mobilePhone, MUtil.md5(newPwd));
-		if(!resetPwd){
-			throw new RuntimeException("重置环信密码失败！");
-		}
+//		boolean resetPwd = EMutil.resetPwd(mobilePhone, MUtil.md5(newPwd));
+//		if(!resetPwd){
+//			throw new RuntimeException("重置环信密码失败！");
+//		}
 		
 		result.setStatus(Status.success_status);
 		result.setInfo(Status.success_info);
@@ -968,11 +968,11 @@ public class UserServiceImpl implements UserService {
 		result.setInfo(Status.success_info);
 		
 		redisBean.delete(mobilePhone+"_"+FinVal.CHECK_CODE_TYPE_REGISTER);
-		boolean createEMUser = EMutil.createEMUser(mobilePhone, MUtil.md5(password),school.getcSchoolName());
-		if(!createEMUser){
-			log.error("创建环信账户失败！！！");
-			throw new RuntimeException();
-		}
+//		boolean createEMUser = EMutil.createEMUser(mobilePhone, MUtil.md5(password),school.getcSchoolName());
+//		if(!createEMUser){
+//			log.error("创建环信账户失败！！！");
+//			throw new RuntimeException();
+//		}
 		
 		return login(mobilePhone, password);
 	
@@ -1039,11 +1039,11 @@ public class UserServiceImpl implements UserService {
 		result.setInfo(Status.success_info);
 		
 		redisBean.delete(mobilePhone+"_"+FinVal.CHECK_CODE_TYPE_REGISTER);
-		boolean createEMUser = EMutil.createEMUser(mobilePhone, MUtil.md5(password),"");
-		if(!createEMUser){
-			log.error("创建环信账户失败！！！");
-			throw new RuntimeException();
-		}
+//		boolean createEMUser = EMutil.createEMUser(mobilePhone, MUtil.md5(password),"");
+//		if(!createEMUser){
+//			log.error("创建环信账户失败！！！");
+//			throw new RuntimeException();
+//		}
 		
 		return login(mobilePhone, password);
 	
